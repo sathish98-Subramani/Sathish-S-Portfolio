@@ -1,0 +1,116 @@
+/* Cursor glow that follows pointer (desktop only) */
+.cursor-glow {
+  position: fixed;
+  top: 0; left: 0;
+  width: 480px; height: 480px;
+  margin-left: -240px; margin-top: -240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124, 92, 255, 0.16), transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  transform: translate3d(-1000px, -1000px, 0);
+  transition: opacity 300ms ease;
+  will-change: transform;
+}
+@media (max-width: 880px), (hover: none) { .cursor-glow { display: none; } }
+
+/* Marquee for toolkit icons */
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 46px;
+  width: max-content;
+  animation: marquee 26s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track img {
+  height: 34px; width: 34px;
+  opacity: 0.55;
+  filter: grayscale(0.2);
+  transition: opacity var(--dur-fast), transform var(--dur-fast);
+}
+.marquee-track img:hover { opacity: 1; transform: translateY(-4px) scale(1.08); }
+
+/* Skill bars */
+.skill-row { margin-bottom: 20px; }
+.skill-row-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  margin-bottom: 8px;
+  color: var(--text-1);
+}
+.skill-row-top strong { color: var(--text-0); font-weight: 600; }
+.skill-track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.skill-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent-gradient);
+  width: 0%;
+  transition: width 1.1s var(--ease-premium);
+}
+
+/* Typing headline */
+.typewriter {
+  display: inline-block;
+  border-right: 2px solid var(--accent-b);
+  padding-right: 4px;
+  animation: caret 900ms steps(1) infinite;
+}
+@keyframes caret { 50% { border-color: transparent; } }
+
+/* Floating blob accent */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  z-index: -1;
+  animation: floaty 10s var(--ease-out-soft) infinite alternate;
+}
+@keyframes floaty {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(18px, -22px) scale(1.08); }
+}
+
+/* Magnetic tilt wrapper (JS sets --rx/--ry) */
+.tilt {
+  transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 260ms var(--ease-out-soft);
+}
+
+/* Ring glow around profile image */
+.glow-ring {
+  position: relative;
+  border-radius: 50%;
+  isolation: isolate;
+}
+.glow-ring::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--accent-a), var(--accent-b), var(--accent-c), var(--accent-a));
+  z-index: -1;
+  animation: spin 7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track, .blob, .glow-ring::before, .typewriter { animation: none !important; }
+}

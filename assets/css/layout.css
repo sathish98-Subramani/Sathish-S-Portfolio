@@ -1,0 +1,66 @@
+/* ===== Home hero ===== */
+.hero { padding: calc(var(--nav-h) + 60px) 0 40px; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+.hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin-bottom: 20px; }
+.hero-actions { display: flex; gap: 14px; margin: 30px 0 22px; flex-wrap: wrap; }
+.hero-roles { display: flex; gap: 10px; flex-wrap: wrap; }
+.role-type { color: var(--accent-b); }
+
+.hero-portrait { position: relative; justify-self: center; z-index: 1; }
+.blob { position: absolute; }
+.hero-portrait .glow-ring { width: 300px; height: 300px; padding: 6px; }
+.hero-portrait img { width: 288px; height: 288px; border-radius: 50%; object-fit: cover; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.stats-grid .card { text-align: center; }
+.stats-grid strong { display: block; font-family: var(--font-display); font-size: 2.1rem; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.stats-grid span { color: var(--text-1); font-size: 0.92rem; }
+
+@media (max-width: 880px) {
+  .hero-grid { grid-template-columns: 1fr; text-align: center; }
+  .hero-actions, .hero-roles { justify-content: center; }
+  .stats-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== About ===== */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.check-list { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+.check-list li { position: relative; padding-left: 22px; color: var(--text-1); font-size: 0.96rem; }
+.check-list li::before { content: '›'; position: absolute; left: 0; color: var(--accent-b); font-weight: 700; }
+.tag-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+@media (max-width: 880px) { .about-grid { grid-template-columns: 1fr; } }
+
+/* ===== Skills ===== */
+.skills-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; align-items: start; }
+.skills-side { display: flex; flex-direction: column; gap: 20px; }
+@media (max-width: 880px) { .skills-grid { grid-template-columns: 1fr; } }
+
+/* ===== Projects ===== */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
+
+/* ===== Internship timeline ===== */
+.timeline { display: flex; flex-direction: column; gap: 22px; max-width: 720px; }
+.timeline-item {
+  padding: 26px 28px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-a);
+}
+.timeline-item h3 { margin: 10px 0 6px; font-size: 1.2rem; }
+.timeline-item .btn { margin-top: 16px; padding: 9px 18px; font-size: 0.85rem; }
+
+/* ===== Contact ===== */
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+.contact-card { text-align: left; display: flex; flex-direction: column; gap: 6px; }
+.contact-icon { font-size: 1.6rem; margin-bottom: 6px; }
+.contact-card .pill { align-self: flex-start; margin-top: 10px; }
